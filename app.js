@@ -13,40 +13,40 @@ const connection = mysql.createConnection({
 
 connection.connect(function(err) {
     if (err) throw err;
-    console.log(' ********************************* \n *     Employee Data Manager     * \n ********************************* ');
+    console.log('     _______  __   __  _______  ___      _______  __   __  _______  _______ \n    |       ||  |_|  ||       ||   |    |       ||  | |  ||       ||       |\n    |    ___||       ||    _  ||   |    |   _   ||  |_|  ||    ___||    ___|\n    |   |___ |       ||   |_| ||   |    |  | |  ||       ||   |___ |   |___ \n    |    ___||       ||    ___||   |___ |  |_|  ||_     _||    ___||    ___|\n    |   |___ | ||_|| ||   |    |       ||       |  |   |  |   |___ |   |___ \n    |_______||_|   |_||___|    |_______||_______|  |___|  |_______||_______|\n     ______   _______  _______  _______                                     \n    |      | |   _   ||       ||   _   |                                    \n    |  _    ||  |_|  ||_     _||  |_|  |                                    \n    | | |   ||       |  |   |  |       |                                    \n    | |_|   ||       |  |   |  |       |                                    \n    |       ||   _   |  |   |  |   _   |                                    \n    |______| |__| |__|  |___|  |__| |__|                                    \n     __   __  _______  __    _  _______  _______  _______  ______           \n    |  |_|  ||   _   ||  |  | ||   _   ||       ||       ||    _ |          \n    |       ||  |_|  ||   |_| ||  |_|  ||    ___||    ___||   | ||          \n    |       ||       ||       ||       ||   | __ |   |___ |   |_||_         \n    |       ||       ||  _    ||       ||   ||  ||    ___||    __  |        \n    | ||_|| ||   _   || | |   ||   _   ||   |_| ||   |___ |   |  | |        \n    |_|   |_||__| |__||_|  |__||__| |__||_______||_______||___|  |_|        ')
     startMenu();
 });
 
 function startMenu() {
     // Start menu options:
-    // - Manage departments (add, view, delete, budgets)
-    // - Manage roles (add, view, delete)
-    // - Manage employees (add, view, update, delete)
+    // - Manage departments (add, view) (bonus: delete, budgets)
+    // - Manage roles (add, view) (bonus: delete)
+    // - Manage employees (add, view, update) (bonus: delete)
     // - Exit
 
-    console.log(" * MAIN MENU *");
+    console.log(" ********************* \n *     MAIN MENU     * \n ********************* ");
     inquirer.prompt({
         name: "choice",
         type: "list",
         message: "What would you like to do?",
         choices: [
-            "Manage departments (view all, add new, delete existing, or view budget utilization)",
-            "Manage roles (view all, add new, or delete existing)",
-            "Manage employees (view all, add new, modify existing, or delete existing)",
-            "Exit"
+            "Manage departments",
+            "Manage roles",
+            "Manage employees",
+            "<-- EXIT"
         ]})
     .then((response) => {
         switch (response.choice) {
-            case "Manage departments (view all, add new, delete existing, or view budget utilization)":
+            case "Manage departments":
                 departmentsMenu();
                 break;
-            case "Manage roles (view all, add new, or delete existing)":
+            case "Manage roles":
                 rolesMenu();
                 break;
-            case "Manage employees (view all, add new, modify existing, or delete existing)":
+            case "Manage employees":
                 employeesMenu();
                 break;
-            case "Exit":
+            case "<-- EXIT":
                 connection.end();
                 break;
             default:
@@ -60,11 +60,11 @@ function departmentsMenu() {
     // Departments menu options:
     // - View departments
     // - Add department
-    // - Delete department
-    // - View utilized budgets
+    // - Delete department (bonus)
+    // - View utilized budgets (bonus)
     // - Back to main menu
 
-    console.log(" * MANAGE DEPARTMENTS *");
+    console.log(" ********************** \n * MANAGE DEPARTMENTS * \n **********************");
     inquirer.prompt({
         name: "choice",
         type: "list",
@@ -72,9 +72,9 @@ function departmentsMenu() {
         choices: [
             "View all departments",
             "Add a new department",
-            "Delete a department",
-            "View utilized budgets by department",
-            "Back to main menu"
+            // "Delete a department",
+            // "View utilized budgets by department",
+            "<-- BACK TO MAIN MENU"
         ]})
     .then((response) => {
         switch (response.choice) {
@@ -84,13 +84,13 @@ function departmentsMenu() {
             case "Add a new department":
                 addDepartment();
                 break;
-            case "Delete a department":
-                deleteDepartment();
-                break;
-            case "View utilized budgets by department":
-                departmentBudgets();
-                break;
-            case "Back to main menu":
+            // case "Delete a department":
+            //     deleteDepartment();
+            //     break;
+            // case "View utilized budgets by department":
+            //     departmentBudgets();
+            //     break;
+            case "<-- BACK TO MAIN MENU":
                 startMenu();
                 break;
             default:
@@ -104,10 +104,10 @@ function rolesMenu() {
     // Roles menu options:
     // - View roles
     // - Add role
-    // - Delete role
+    // - Delete role (bonus)
     // - Back to main menu
 
-    console.log(" * MANAGE ROLES *");
+    console.log(" ********************** \n *    MANAGE ROLES    * \n **********************");
     inquirer.prompt({
         name: "choice",
         type: "list",
@@ -115,8 +115,8 @@ function rolesMenu() {
         choices: [
             "View all roles",
             "Add a new role",
-            "Delete a roles",
-            "Back to main menu"
+            // "Delete a roles",
+            "<-- BACK TO MAIN MENU"
         ]})
     .then((response) => {
         switch (response.choice) {
@@ -126,10 +126,10 @@ function rolesMenu() {
             case "Add a new role":
                 addRole();
                 break;
-            case "Delete a role":
-                deleteRole();
-                break;
-            case "Back to main menu":
+            // case "Delete a role":
+            //     deleteRole();
+            //     break;
+            case "<-- BACK TO MAIN MENU":
                 startMenu();
                 break;
             default:
@@ -144,10 +144,10 @@ function employeesMenu() {
     // - View employees
     // - Add employee
     // - Update employee
-    // - Delete employee
+    // - Delete employee (bonus)
     // - Back to main menu
 
-    console.log(" * MANAGE EMPLOYEES *");
+    console.log(" ********************** \n *  MANAGE EMPLOYEES  * \n **********************");
     inquirer.prompt({
         name: "choice",
         type: "list",
@@ -156,8 +156,8 @@ function employeesMenu() {
             "View all employees",
             "Add a new employee",
             "Update an employee's information",
-            "Delete an employee",
-            "Back to main menu"
+            // "Delete an employee",
+            "<-- BACK TO MAIN MENU"
         ]})
     .then((response) => {
         switch (response.choice) {
@@ -170,10 +170,10 @@ function employeesMenu() {
             case "Update an employee's information":
                 updateEmployee();
                 break;
-            case "Delete an employee":
-                deleteEmployee();
-                break;
-            case "Back to main menu":
+            // case "Delete an employee":
+            //     deleteEmployee();
+            //     break;
+            case "<-- BACK TO MAIN MENU":
                 startMenu();
                 break;
             default:
