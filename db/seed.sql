@@ -1,10 +1,10 @@
 INSERT INTO department (name) VALUES ('Engineering');
 INSERT INTO department (name) VALUES ('Sales');
 
-INSERT INTO role (title, salary, dept_id) VALUES ('Senior Engineer', 100000, 1);
-INSERT INTO role (title, salary, dept_id) VALUES ('Junior Engineer', 60000, 1);
-INSERT INTO role (title, salary, dept_id) VALUES ('Senior Sales Rep', 80000, 2);
-INSERT INTO role (title, salary, dept_id) VALUES ('Junior Sales Rep', 50000, 2);
+INSERT INTO role (title, salary, department_id) VALUES ('Senior Engineer', 100000, 1);
+INSERT INTO role (title, salary, department_id) VALUES ('Junior Engineer', 60000, 1);
+INSERT INTO role (title, salary, department_id) VALUES ('Senior Sales Rep', 80000, 2);
+INSERT INTO role (title, salary, department_id) VALUES ('Junior Sales Rep', 50000, 2);
 
 INSERT INTO employee (first_name, last_name, role_id) VALUES ('Willem', 'Riley', 1);
 INSERT INTO employee (first_name, last_name, role_id) VALUES ('Fannie', 'Cohen', 1);
